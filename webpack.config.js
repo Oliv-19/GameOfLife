@@ -29,18 +29,5 @@ module.exports = {
         type: "asset/resource",
       },
     ],
-  },
-  resolve: {
-    alias: {
-      config$: './configs/app-config.js',
-      react: './vendor/react-master',
-    },
-    extensions: ['.js'],
-    modules: [
-      'node_modules',
-      'bower_components',
-      'shared',
-      '/shared/vendor/modules',
-    ],
-  },
+  }
 };

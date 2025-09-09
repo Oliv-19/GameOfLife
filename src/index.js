@@ -41,7 +41,7 @@ export default class Board{
             resultStr+= '|\n'
         }
         resultStr+= firstLine
-        return resultStr
+        return console.log(resultStr)
     }
     isDead(board_state, cellCol, cellRow){
         let arr=[
@@ -58,13 +58,12 @@ export default class Board{
         let result= board_state[cellRow][cellCol]
         arr.forEach((coord)=>{
             if(board_state[coord[0]] !=undefined && board_state[coord[0]][coord[1]] != undefined){
-                //console.log(board_state[coord[0]][coord[1]])
                 if(board_state[coord[0]][coord[1]] == 1){
                     count +=1
                 }
             }
         })
-        console.log(count)
+        
         if(board_state[cellRow][cellCol] == 1){
             if(count==2 || count == 3){
                 result = 1 
@@ -80,24 +79,25 @@ export default class Board{
         return result
     }
     nextBoardState(board_state){
-        //console.table(board_state)
+        let newBoard=this.deadState(board_state[0].length, board_state.length)
         for (let i = 0; i < board_state.length; i++) {
+            
             for (let j = 0; j < board_state[i].length; j++) {
-                //console.log(board_state[i][j])
-                board_state[i][j] = this.isDead(board_state, j, i)
-                //console.log(board_state[i][j])
+                newBoard[i][j]= this.isDead(board_state, j, i)
                 
             }
-            
         }
         
-        //console.table(board_state)
-        return board_state
+        return newBoard
+    }
+    Init(){
+        let firstBoard= this.randomState(6, 6)
+        for (let i = 0; i < 10; i++) {
+            firstBoard= this.nextBoardState(firstBoard)
+            this.render(firstBoard)
+        }
     }
 }
-const boardInstance= new Board()
-let random= boardInstance.randomState(6,6)
-console.table(boardInstance.render(random))
-let next= boardInstance.nextBoardState(random)
-//console.table(boardInstance.render(boardInstance.randomState(6,6)))
-console.table(boardInstance.render(next))
+
+ const boardInstance= new Board()
+ boardInstance.Init()
