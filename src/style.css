@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 *{
-    /* To do: animation that "turns on" the screen(.grid) */
     box-sizing: content-box;
     margin: 0;
     padding: 0;
@@ -9,17 +8,34 @@ body{
     height: 100vh; 
     font-family: monospace; 
     font-size: 16px;
-    /* background-color: #ff3b3b; */
-    background-color: #E65358;
+    background-color:#e24a4f ;
+    width: 100vw;
+    display: flex;
+    /* flex-direction: column; */
+    overflow: hidden;
+    justify-content: center; 
+    align-items: center;
+}
+.center{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    width: 70%;
+    height: 100%;
+    background-color: #E65358;
+    box-shadow: 
+        5px 0px 9px #E65358,
+        -5px 0px 9px #E65358 ;
 }
 .grid{
-    width: 90%; 
-    height: 90%; 
-    background-color: #a9b19d;
+    width: 95%; 
+    height: 95%; 
+    min-width: clamp(200px, 95%,400px);
+    min-height:  clamp(100px, 95%,200px) ;
+    max-width:  100%;
+    max-height: 100% ;
+    background-color: #0a0a0a;
     border: 1px solid rgb(31, 31, 31);
     display: flex;
     align-items: center;
@@ -27,20 +43,22 @@ body{
     font-size: 1.1rem;
     line-height: 0.9rem;
     letter-spacing: 3px;
+    animation: slit-in-horizontal 1s ease-in 0s 1 normal forwards;
 }
 .wrapper{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 45%;
-    height: 60%;
-    padding: 3% 2% 1.5% 2%;
-    /* padding-bottom: 1.5%; */
+    width: 50%;
+    height: 50%;
+    padding: 3% 3% 1.5% 3%;
     gap: 10px;
     background-color: #33363C;
     border-radius: 3% 3% 12% 3%;
     border: 1px solid rgb(31, 31, 31);
+    min-width: clamp(80px, 90%,680px);
+    min-height: 350px;
 }
 .title{
     font-family: "VT323", monospace;
@@ -49,18 +67,36 @@ body{
     font-size: 2.5rem;
 }
 .buttons{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 50px);
     justify-content: space-evenly;
     align-items: center;
-    width: 35%;
+    width: 25%;
+    min-width: clamp(200px, 95%,400px);
+    min-height:  clamp(100px, 20%,200px) ;
+}
+.start{
+    grid-area: 2/1/3/2;
+}
+.stop{
+    grid-area: 2/3/3/4;
+    font-size: 1.5rem;
+}
+.restart{
+    grid-area: 1/2/2/3;
 }
 button{
     appearance: none;
     background-color: #3F403B;
-    padding: 5%;
-    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    width: 4rem;
+    text-align: center;
     border-radius: 50%;
-    font-size: 1rem;
+    font-size: 1.3rem;
     cursor: pointer;
     color: #c5c5c5;
     outline: none;
@@ -92,4 +128,17 @@ button:active{
         0 0.2em 0 0 #141414,
         0 0.225em 0 0 #101010,
         0 0.225em 0.375em 0 #0a0a0a;
+}
+@keyframes slit-in-horizontal {
+    0%{
+        background-color: #0a0a0a;
+        opacity:0;
+    }
+    50%{
+        background-color: #54584e;
+        opacity:1;
+    }
+    100%{
+        background-color: #a9b19d;
+    }
 }
